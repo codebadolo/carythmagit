@@ -1,0 +1,32 @@
+{
+    "dev": {
+        "aws_region": "us-east-1",
+        "django_settings": "carythma.settings",
+        "profile_name": "default",
+        "project_name": "carythma",
+        "runtime": "python3.11",
+        "s3_bucket": "zappa-mdqncntdz",
+        "apigateway_enabled": false,
+        "manage_roles": false,
+        "role_name": "carythma-dev-ZappaLambdaExecutionRole",
+        "role_arn": "arn:aws:iam::596381630174:role/carythma-dev-ZappaLambdaExecutionRole",
+        "delete_s3_zip": false,
+    }
+}
+
+
+{
+    "dev": {
+        "aws_region": "us-east-1",
+        "django_settings": "carythma.settings",
+        "profile_name": "default",
+        "project_name": "carythma",
+        "runtime": "python3.11",
+        "s3_bucket": "zappa-2ao4jfucy",
+        "vpc_config" : {
+           "SubnetIds": ["subnet-0ba8f4e0332425df4", "subnet-06fef5bfa2d52944b", "subnet-0edb90bd2c517ccc6", "subnet-0bfd30bf1646eff5d", "subnet-074c161e8948eb238", "subnet-030b1a932d05e3261"],//["subnet-0ba8f4e0332425df4" ,"subnet-06fef5bfa2d52944b"],
+           "SecurityGroupIds": ["sg-08cf150f6b7f5161c"]
+       }
+
+    }
+}
