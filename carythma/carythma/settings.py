@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-g^sqlix5i#2#yka(1+mgi+rir@n_b1v9w(8*oa=615y3wf$6er
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #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
-ALLOWED_HOSTS = ['*'] ,##['ec2-54-81-151-224.compute-1.amazonaws.com']
+ALLOWED_HOSTS = ['54.81.151.224'] ,##['ec2-54-81-151-224.compute-1.amazonaws.com']
 
 
 # Application definition
