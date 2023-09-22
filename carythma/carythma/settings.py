@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-g^sqlix5i#2#yka(1+mgi+rir@n_b1v9w(8*oa=615y3wf$6er
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #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
-ALLOWED_HOSTS = ['54.81.151.224'] ,##['ec2-54-81-151-224.compute-1.amazonaws.com']
+ALLOWED_HOSTS = [] ,##['ec2-54-81-151-224.compute-1.amazonaws.com']
 
 
 # Application definition
@@ -71,11 +71,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'carythma.wsgi.application'
-
-
-#
-
+WSGI_APPLICATION = 'carythma.wsgi.application' DATABASES = { "default": { "ENGINE": "django.db.backends.sqlite3",# "NAME": 
+        BASE_DIR / "db.sqlite3",
+    }
+}
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -86,7 +86,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -127,7 +127,7 @@ AUTH_USER_MODEL = 'api.Client'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+'''
 
 AWS_ACCESS_KEY_ID = 'AKIAYVWY5P3PBD3HJYW4'
 AWS_SECRET_ACCESS_KEY = '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'
@@ -138,3 +138,4 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL =  None
 AWS_S3_VERITY = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+'''
