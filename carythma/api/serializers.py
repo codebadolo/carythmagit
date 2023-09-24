@@ -25,7 +25,7 @@ class  DonneEcgSerializer(ModelSerializer):
 class  LoginSerializer(ModelSerializer):
     class Meta:
         model  =  Client
-        fields = ['id' , "phone" , 'password']
+        fields = ["phone" , 'password']
 
 
 class ClientSerializer(ModelSerializer):

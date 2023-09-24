@@ -5,6 +5,7 @@ from rest_framework.viewsets import ModelViewSet
 from django.views import View
 from django.http import JsonResponse
 import pickle
+from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -60,47 +61,25 @@ class EcgViewset(ModelViewSet):
 
 
 # debut de la vue du patient
-
-
-
 class ClientViewset(ModelViewSet):
-    #queryset =   Client.objects.all()
-    serializer_class =  ClientSerializer
-    #permission_classes = (permissions.AllowAny,)
+    serializer_class =   LoginSerializer
+    permission_classes = (permissions.AllowAny,)
     queryset  = Client.objects.all()
 
+
+class  UserViewset(ModelViewSet):
+    serializer_class =   LoginSerializer
+    permission_classes = (permissions.AllowAny,)
+
+    def get_queryset(self):
+        return Client.objects.all()
+
     # Vue de connexion personnalisée
-
-'''
-    @action(detail=False, methods=['post'])
-    def login(self, request):
-        serializer = LoginSerializer(data=request.data)
-        if serializer.is_valid():
-            phone = serializer.validated_data['phone']
-            password = serializer.validated_data['password']
-
-            # Authenticate the user
-            user = Client.objects.filter(phone=phone, password=password).first()
-
-            if user:
-                # Successfully authenticated
-                return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
-            else:
-                # Authentication failed
-                return Response({'error': 'Authentication failed'}, status=status.HTTP_401_UNAUTHORIZED)
-        else:
-            # Invalid data in the request
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-'''
-'''
-class LoginView(APIView):
-    serializer_class  = LoginSerializer
-
     def login_user(self, request):
         phone = request.data.get('phone')
         password = request.data.get('password')
         # Vérifiez les informations de connexion
-        user = authenticate(request, phone=phone, password=password)
+        user = authenticate(request, phone= phone , password=password)
 
         if user:
             login(request, user)
@@ -108,9 +87,8 @@ class LoginView(APIView):
             return Response(serializer.data)
         else:
             return Response({'error': 'Connexion refusée veuillez verifer vos identifiants'}, status=status.HTTP_401_UNAUTHORIZED)
-'''
 
-'''
+
 class UserLogout(APIView):
     authentication_classes = [SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
@@ -119,4 +97,3 @@ class UserLogout(APIView):
         # Déconnexion de l'utilisateur
         logout(request)
         return Response({"message": "Déconnexion réussie."}, status=status.HTTP_200_OK)
-'''
