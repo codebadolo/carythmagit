@@ -22,6 +22,10 @@ class  DonneEcgSerializer(ModelSerializer):
         'sante_patient'
         ]
 
+class  LoginSerializer(ModelSerializer):
+    class Meta:
+        model  =  Client
+        fields = ['id' , "phone" , 'password']
 
 
 class ClientSerializer(ModelSerializer):

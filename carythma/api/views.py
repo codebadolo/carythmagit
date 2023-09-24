@@ -1,14 +1,20 @@
 import numpy as np
 from django.http import HttpResponseRedirect
-from .serializers import   DonneEcgSerializer , ClientSerializer
+from .serializers import   DonneEcgSerializer , ClientSerializer , LoginSerializer
 from rest_framework.viewsets import ModelViewSet
 from django.views import View
 from django.http import JsonResponse
 import pickle
-
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from  .models  import  DonneeECG , Client
 import joblib
+from rest_framework.authentication import SessionAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import  login, logout, authenticate
+
+
+# view  ecg et prediction
 
 class EcgViewset(ModelViewSet):
     #queryset     =  DonneeECG.objects.all()
@@ -59,5 +65,20 @@ class EcgViewset(ModelViewSet):
 class ClientViewset(ModelViewSet):
     #queryset =   Client.objects.all()
     serializer_class =  ClientSerializer
+    permission_classes = (permissions.AllowAny,)
     def get_queryset(self):
         return  Client.objects.all()
+
+    # Vue de connexion personnalisée
+    def login_user(self, request):
+        phone = request.data.get('phone')
+        password = request.data.get('password')
+        # Vérifiez les informations de connexion
+        user = authenticate(request, phone=phone, password=password)
+
+        if user:
+            login(request, user)
+            serializer = self.get_serializer(user)
+            return Response(serializer.data)
+        else:
+            return Response({'error': 'Connexion refusée veuillez verifer vos identifiants'}, status=status.HTTP_401_UNAUTHORIZED)

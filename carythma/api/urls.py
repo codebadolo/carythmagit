@@ -4,14 +4,11 @@ from  .views import EcgViewset , ClientViewset
 
 from django.contrib import admin
 
-router = routers.SimpleRouter()
+router = routers.SimpleRouter(trailing_slash=False)
 router.register('patient',  ClientViewset , basename='user')
-router.register('patient/list' , ClientViewset , basename = 'listpatient'  )
-router.register('patient/create' , ClientViewset , basename = 'createpatient'  )
-
 router.register('ecg', EcgViewset, basename='iot')
 
 urlpatterns = [
-
+    path('apicarythma/login/', ClientViewset.as_view({'post': 'login_user'}), name='user-login'),
     path('apicarythma/', include(router.urls)),
 ]
