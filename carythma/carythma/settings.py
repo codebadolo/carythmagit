@@ -74,7 +74,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'carythma.wsgi.application'
 
 DATABASES = { "default": {
-	 "ENGINE": "django.db.backends.sqlite3", "NAME": 
+	 "ENGINE": "django.db.backends.sqlite3", "NAME":
         BASE_DIR / "db.sqlite3",
     }
 
@@ -132,6 +132,15 @@ AUTH_USER_MODEL = 'api.Client'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 '''
 
 AWS_ACCESS_KEY_ID = 'AKIAYVWY5P3PBD3HJYW4'
