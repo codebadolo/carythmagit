@@ -62,7 +62,7 @@ class EcgViewset(ModelViewSet):
 
 # debut de la vue du patient
 class ClientViewset(ModelViewSet):
-    serializer_class =   LoginSerializer
+    serializer_class =   ClientSerializer
     permission_classes = (permissions.AllowAny,)
     queryset  = Client.objects.all()
 

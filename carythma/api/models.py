@@ -39,11 +39,11 @@ class Client(AbstractUser):
     #date_naissance = models.DateField(null=True, blank=True, verbose_name='Date de naissance')
 
     SEX_CHOICES = [
-        ('M', 'Homme'),
-        ('F', 'Femme'),
-        ('N', 'Non binaire'),
+        ('Homme', 'Homme'),
+        ('Femme', 'Femme'),
+        ('Non binaire', 'Non binaire'),
     ]
-    sex = models.CharField(max_length=1, choices=SEX_CHOICES, verbose_name='Sexe')
+    sex = models.CharField(max_length=11, choices=SEX_CHOICES, verbose_name='Sexe')
 
     #numero_medecin = models.CharField(  verbose_name= 'numero medecine'  ,null= False  , max_length= 16 , db_column ='numer_medecin')
 
@@ -61,10 +61,6 @@ class Client(AbstractUser):
 
 
 #ceci  marque la  fin du model  patient danss  notre cas
-
-class Testme(models.Model):
-    nom = models.CharField(max_length =  45 )
-
 
 class   DonneeECG(models.Model):
     interval_pr  = models.IntegerField( default =1  )

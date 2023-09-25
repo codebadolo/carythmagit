@@ -1,8 +1,8 @@
 from django.contrib import admin
-from  .models import Testme , DonneeECG , Client
+from  .models import  DonneeECG , Client
 
 
-admin.site.register(Testme)
+
 admin.site.register(DonneeECG)
 
 
