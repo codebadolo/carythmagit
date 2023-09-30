@@ -72,10 +72,11 @@ class   DonneeECG(models.Model):
 
     @property
     def rr_interval(self):
-        interval_rr_moyen = (self.interval_pr + self.interval_qt) / 2
+        '''interval_rr_moyen = (self.interval_pr + self.interval_qt) / 2
         court_interval_rr = interval_rr_moyen - (self.interval_qt / 2)
         long_interval_rr = interval_rr_moyen + (self.interval_qt / 2)
-        return long_interval_rr - court_interval_rr
+        return long_interval_rr - court_interval_rr'''
+        return  self.interval_pr + self.interval_qt
 
     @property
     def rythme_cardiaque(self):
