@@ -85,4 +85,4 @@ class   DonneeECG(models.Model):
     def qtc(self):
         return self.interval_qt + 1.75 * (self.rythme_cardiaque - 60)
 
-    sante_patient   = models.CharField(verbose_name="etat patient", max_length= 10 ,  editable=False, blank=True, null=True)
+    sante_patient   = models.CharField(verbose_name="etat patient", max_length= 50 ,  editable=False, blank=True, null=True)

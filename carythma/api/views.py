@@ -21,8 +21,8 @@ from rest_framework import viewsets, permissions, status
 class EcgViewset(ModelViewSet):
     #queryset     =  DonneeECG.objects.all()
     serializer_class = DonneEcgSerializer
-    def get_queryset():
-        DonneeECG.objects.all()
+    def get_queryset(self):
+        return DonneeECG.objects.all()
 
     def perform_create(self,serializer) :
         interval_pr  =  self.request.data.get("intevral_pr"  )
@@ -46,11 +46,15 @@ class EcgViewset(ModelViewSet):
         #selected_features = ['Interval-RR', 'Interval-PR', 'Interval-QT', 'RYTHME CARDIAQUE', 'RatioPRQT', 'QTc']
 
         X = X.reshape(1 , -1)
+        #def open_test_data():
+            #return open('/home/codewithbadolo/apiosc23carythma/carythmaosc23/modelcarythmagd.joblib', 'rb')
         def open_test_data():
-            return open('/home/codewithbadolo/apiosc23carythma/carythmaosc23/modelcarythmagd.joblib', 'rb')
-
+            return open('/home/codewithbadolo/osc/carythma/api/modelcarythma/modelcarythmagdpickle.pkl', 'rb')
         with open_test_data() as f:
-            model   = joblib.load(f)
+            model = pickle.load(f)
+
+        #with open_test_data() as f:
+            #model   = joblib.load(f)
         #model = pickle.load('modelcarythma.pkl')
         #moddel loding process
         pred = model.predict(X)
