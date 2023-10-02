@@ -18,7 +18,7 @@ urlpatterns = [
     #path('api/login/', UserViewset.as_view({'post': 'login_user'}), name='user-login'), #{'post': 'login_user'}
     #path('api/logout/', UserLogout.as_view(), name='user-logout'),
     #path('api/', include(routerauth.urls)),
-    path('apicarythma/appmobile/', EcgViewset.as_view({'post': 'list'}), name='user-login'), #{'post': 'login_user'}
+    #path('apicarythma/appmobile/', EcgViewset.as_view({'post': 'list'}), name='user-login'), #{'post': 'login_user'}
     path('apicarythma/', include(router.urls)),
     #path('api-auth/login', include('rest_framework.urls'))
 #path('login', views.UserLogin.as_view(), name='login'),
