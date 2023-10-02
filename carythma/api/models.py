@@ -30,37 +30,22 @@ class ClientManager(BaseUserManager): # ceci est  le manager des patient
 
 
 class Client(AbstractUser):
-
-
     phone = models.CharField(max_length=15 , unique=True, verbose_name='Téléphone')
     date_naissance = models.CharField( blank=False, max_length= 34 ,   verbose_name='Date de naissance')
-
-    #phone = models.CharField(max_length=15, unique=True, verbose_name='Téléphone')
-    #date_naissance = models.DateField(null=True, blank=True, verbose_name='Date de naissance')
-
     SEX_CHOICES = [
         ('Homme', 'Homme'),
         ('Femme', 'Femme'),
         ('Non binaire', 'Non binaire'),
     ]
     sex = models.CharField(max_length=11, choices=SEX_CHOICES, verbose_name='Sexe')
-
-    #numero_medecin = models.CharField(  verbose_name= 'numero medecine'  ,null= False  , max_length= 16 , db_column ='numer_medecin')
-
     numero_medecin = models.CharField(null= False  , max_length= 16 ,  blank =  False , verbose_name= 'numero medecine' , default=  '+226' )
-
     username = None
-
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = []
-
     objects = ClientManager()  # Utilisation du gestionnaire d'utilisateurs personnalisé
 
     def __str__(self):
         return self.phone
-
-
-#ceci  marque la  fin du model  patient danss  notre cas
 
 class   DonneeECG(models.Model):
     interval_pr  = models.IntegerField( default =1  )
@@ -79,11 +64,25 @@ class   DonneeECG(models.Model):
         return  self.interval_pr + self.interval_qt
 
     @property
-    def rythme_cardiaque(self):
+    def frequence_cardiaque(self):
         return 60000 / self.rr_interval
 
     @property
     def qtc(self):
-        return self.interval_qt + 1.75 * (self.rythme_cardiaque - 60)
+        return self.interval_qt + 1.75 * (self.frequence_cardiaque - 60)
 
     sante_patient   = models.CharField(verbose_name="etat patient", max_length= 50 ,  editable=False, blank=True, null=True)
+
+
+'''
+    import django_filters
+from .models import DonneeECG
+
+class DonneeECGFilter(django_filters.FilterSet):
+    class Meta:
+        model = DonneeECG
+        fields = {
+            'sante_patient': ['exact', 'contains'],  # Define filtering options for sante_patient field
+            'interval_pr': ['exact', 'gte', 'lte'],   # Define filtering options for interval_pr field
+        }
+'''

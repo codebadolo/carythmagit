@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-g^sqlix5i#2#yka(1+mgi+rir@n_b1v9w(8*oa=615y3wf$6er
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #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
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["postcarythma.cgwpfubo8wvn.us-east-1.rds.amazonaws.com"  , "*"]
 
 
 # Application definition
@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'authentication',
     'rest_framework',
     "corsheaders",
+    'rest_framework.authtoken',
+    'rest_auth',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -84,14 +88,15 @@ DATABASES = { "default": {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'carythmadb' ,
-        'USER': 'postgres',
-        'PASSWORD': 'postgrespwd',
-        'HOST':'carythmadb.cgwpfubo8wvn.us-east-1.rds.amazonaws.com',
+        'NAME': 'postcarythma' ,
+        'USER': 'usercarythma',
+        'PASSWORD': 'passwordcarythmadb',
+        'HOST':'postcarythma.cgwpfubo8wvn.us-east-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
 '''
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
