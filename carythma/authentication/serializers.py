@@ -10,13 +10,14 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 	def create(self, clean_data):
 		user_obj = Client.objects.create_user(
             phone=clean_data['phone'],
-            password=clean_data['password'],
-            first_name=clean_data['first_name'],
-            last_name=clean_data['last_name'],
-            date_naissance=clean_data['date_naissance'],
-            sex=clean_data['sex'],
-            numero_medecin=clean_data['numero_medecin']
-        )
+            password=clean_data['password']
+		)
+		user_obj.first_name=clean_data['first_name']
+		user_obj.last_name=clean_data['last_name']
+		user_obj.date_naissance=clean_data['date_naissance']
+		user_obj.sex=clean_data['sex']
+		user_obj.numero_medecin=clean_data['numero_medecin']
+
 		user_obj.save()
 		return user_obj
 

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-
+import os
+from twilio.rest import Client
 
 
 class ClientManager(BaseUserManager): # ceci est  le manager des patient
@@ -43,7 +44,7 @@ class Client(AbstractUser):
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = []
     objects = ClientManager()  # Utilisation du gestionnaire d'utilisateurs personnalisé
-
+    #etat_patient  = models.ForeignKey(DonneeECG, on_delete=models.CASCADE)
     def __str__(self):
         return self.phone
 
@@ -71,7 +72,23 @@ class   DonneeECG(models.Model):
     def qtc(self):
         return self.interval_qt + 1.75 * (self.frequence_cardiaque - 60)
 
-    sante_patient   = models.CharField(verbose_name="etat patient", max_length= 50 ,  editable=False, blank=True, null=True)
+    sante_patient   = models.CharField( verbose_name="etat patient", max_length= 50 ,  editable=False, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+         if self.sante_patient ==  "['Normale']":
+            #twilio code
+
+            account_sid = 'AC4f4516dd1894fa8d162842e79ae660d1'
+            auth_token = '72017c407c0c855f9d7cdc7377f7528f'
+            client = Client(account_sid, auth_token)
+
+            message = client.messages.create(
+              from_='+16187871636',
+              body='la sante de  votre pastient est  normal ',
+              to='+22677797813'
+            )
+            return super().save(*args, **kwargs)
+
 
 
 '''
