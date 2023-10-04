@@ -6,13 +6,13 @@ Client = get_user_model()
 
 def custom_validation(data):
     #email = data['email'].strip()
-    phone = data['phone'].strip()
-    password = data['password'].strip()
-    first_name = data['first_name'].strip()
-    last_name = data['last_name'].strip()
-    date_naissance = data['date_naissance'].strip()
-    sex = data['sex'].strip()
-    numero_medecin = data['numero_medecin'].strip()
+    phone = data.get('phone').strip()
+    password = data.get('password').strip()
+    first_name = data.get('first_name').strip()
+    last_name = data.get('last_name').strip()
+    date_naissance = data.get('date_naissance').strip()
+    sex = data.get('sex').strip()
+    numero_medecin = data.get('numero_medecin').strip()
 
 #'first_name','last_name', 'date_naissance' , 'sex', 'numero_medecin']
     ##
@@ -24,13 +24,12 @@ def custom_validation(data):
     ##
     if not first_name:
         raise ValidationError('choose another first_name')
-    return data
     if not last_name:
         raise ValidationError('choose another last name')
-    return data
+
     if not date_naissance:
         raise ValidationError('choose another  date of both ')
-    return data
+
 
     if not sex:
         raise ValidationError('choose another username')
