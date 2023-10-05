@@ -8,8 +8,8 @@ from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 class SignUpAPIView(APIView):
-    authentication_classes = [BasicAuthentication , TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    #authentication_classes = [BasicAuthentication , TokenAuthentication]
+    #permission_classes = [IsAuthenticated]
     def get(self,request):
         return Response({'Message':'This is get method of signup API'},status=status.HTTP_200_OK)
 
