@@ -3,11 +3,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import SignUpSerializer
-
+from rest_framework.authentication import BasicAuthentication , TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 class SignUpAPIView(APIView):
-
+    authentication_classes = [BasicAuthentication , TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     def get(self,request):
         return Response({'Message':'This is get method of signup API'},status=status.HTTP_200_OK)
 
