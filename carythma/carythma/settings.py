@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-g^sqlix5i#2#yka(1+mgi+rir@n_b1v9w(8*oa=615y3wf$6er
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #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
-ALLOWED_HOSTS = ["postcarythma.cgwpfubo8wvn.us-east-1.rds.amazonaws.com"  , "*"]
+ALLOWED_HOSTS = ["postcarythma.cgwpfubo8wvn.us-east-1.rds.amazonaws.com"  , "http://18.205.34.124/"]
 
 
 # Application definition
@@ -145,6 +145,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+	'rest_framework.authentication.TokenAuthentication',
     ]
 }
 '''
