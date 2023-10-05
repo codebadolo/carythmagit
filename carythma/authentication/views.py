@@ -10,7 +10,7 @@ from .validations import custom_validation, validate_phone, validate_password
 class UserRegister(APIView):
 	permission_classes = (permissions.AllowAny,)
 	def post(self, request):
-		clean_data = custom_validation(request.data)
+		#clean_data = custom_validation(request.data)
 		serializer = UserRegisterSerializer(data=clean_data)
 		if serializer.is_valid(raise_exception=True):
 			user = serializer.create(clean_data)

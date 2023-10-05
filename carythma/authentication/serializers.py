@@ -7,7 +7,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Client
 		fields = ['id', 'phone', 'password', 'first_name','last_name', 'date_naissance' , 'sex', 'numero_medecin']
-	def create(self, clean_data):
+	'''def create(self, clean_data):
 		user_obj = Client.objects.create_user(
             phone=clean_data['phone'],
             password=clean_data['password']
@@ -20,6 +20,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 		user_obj.save()
 		return user_obj
+	'''
 
 class UserLoginSerializer(serializers.Serializer):
 	phone = serializers.CharField()
