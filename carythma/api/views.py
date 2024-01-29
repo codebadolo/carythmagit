@@ -28,7 +28,7 @@ class EcgViewset(ModelViewSet):
     #search_fields = ['field_name']  # Fields you can search by
     #filterset_fields = ['sante_patient','interval_pr', 'frequence_cardiaque' ]  # Fields you want to filter on
     #filterset_class = DonneeECGFilter  # Use the custom filter class
-
+    
     def get_queryset(self):
         return DonneeECG.objects.all()#.filter('intevral_pr' , 'frequence_cardiaque' , 'sante_patient')
 
@@ -39,8 +39,8 @@ class EcgViewset(ModelViewSet):
         rr_interval  =self.request.data.get("rr_interval" )
         frequence_cardiaque = self.request.data.get("frequence_cardiaque"  )
         qtc = self.request.data.get("ratioprqt" )
-
-
+        
+        
         #transformer nos champs en  taableau
         X = np.array([
             rr_interval,
@@ -60,21 +60,21 @@ class EcgViewset(ModelViewSet):
             return open('/home/codewithbadolo/osc/carythma/api/modelcarythma/modelcarythmagdpickle.pkl', 'rb')
         with open_test_data() as f:
             model = pickle.load(f)
-
+        
         #with open_test_data() as f:
             #model   = joblib.load(f)
         #model = pickle.load('modelcarythma.pkl')
         #moddel loding process
         pred = model.predict(X)
         # model  pprediction
-
+        
         #souvegarde de la serialisation et du resultat du model
         serializer.save(sante_patient = pred)
-
+    
     
 
 
-
+    
 
 
 

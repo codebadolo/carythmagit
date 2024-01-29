@@ -22,6 +22,7 @@ class  DonneEcgSerializer(ModelSerializer):
         'ratioprqt',
         'sante_patient'
         ]
+        
 '''
 class DonneeECGLess(ModelSerializer):
     frequence_cardiaque =  ReadOnlyField()
