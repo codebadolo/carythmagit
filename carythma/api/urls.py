@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework import routers
-from  .views import EcgViewset #, ClientViewset  #, UserViewset , UserLogout
+from  .views import EcgViewset  #, broadcast_sms 
+#, ClientViewset  #, UserViewset , UserLogout
 from django.contrib import admin
 
 router = routers.SimpleRouter()
@@ -20,6 +21,7 @@ urlpatterns = [
     #path('api/', include(routerauth.urls)),
     #path('apicarythma/appmobile/', EcgViewset.as_view({'post': 'list'}), name='user-login'), #{'post': 'login_user'}
     path('apicarythma/', include(router.urls)),
+    #path(r'broadcast', broadcast_sms, name="default"),
     #path('api-auth/login', include('rest_framework.urls'))
 #path('login', views.UserLogin.as_view(), name='login'),
     #======================================================

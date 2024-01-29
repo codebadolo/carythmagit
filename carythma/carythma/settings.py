@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import environ 
+import  os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,8 +27,28 @@ SECRET_KEY = 'django-insecure-g^sqlix5i#2#yka(1+mgi+rir@n_b1v9w(8*oa=615y3wf$6er
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 #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
-ALLOWED_HOSTS = ["postcarythma.cgwpfubo8wvn.us-east-1.rds.amazonaws.com"  , "http://18.205.34.124/"]
+ALLOWED_HOSTS = [] # ["postcarythma.cgwpfubo8wvn.us-east-1.rds.amazonaws.com"  , "http://18.205.34.124/"]
 
+
+MY_ACCOUNT_SID = "AC4f4516dd1894fa8d162842e79ae660d1"
+TWILIO_AUTH_TOKEN="72017c407c0c855f9d7cdc7377f7528f"
+MY_TWILIO_NUMBER="+16187871636"
+
+'''
+env = environ.Env()
+environ.Env.read_env()
+'''
+
+TWILIO_ACCOUNT_SID = os.getenv("MY_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
+TWILIO_NUMBER = os.getenv("MY_TWILIO_NUMBER")
+
+
+SMS_BROADCAST_TO_NUMBERS = [
+   "+22661396930"
+   #"+22677797813"
+    # use the format +1XXXXXXXXXX
+ ]
 
 # Application definition
 
@@ -38,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'testsms',
     'authentication',
     'rest_framework',
     "corsheaders",
@@ -148,8 +171,9 @@ REST_FRAMEWORK = {
 	'rest_framework.authentication.TokenAuthentication',
     ]
 }
-'''
 
+
+'''
 AWS_ACCESS_KEY_ID = 'AKIAYVWY5P3PBD3HJYW4'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'bucketcarythma'

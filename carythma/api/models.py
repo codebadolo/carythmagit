@@ -74,6 +74,7 @@ class   DonneeECG(models.Model):
 
     sante_patient   = models.CharField( verbose_name="etat patient", max_length= 50 ,  editable=False, blank=True, null=True)
 
+    '''
     def save(self, *args, **kwargs):
          if self.sante_patient ==  "['Normale']":
             #twilio code
@@ -89,17 +90,5 @@ class   DonneeECG(models.Model):
             )
             return super().save(*args, **kwargs)
 
+    '''
 
-
-'''
-    import django_filters
-from .models import DonneeECG
-
-class DonneeECGFilter(django_filters.FilterSet):
-    class Meta:
-        model = DonneeECG
-        fields = {
-            'sante_patient': ['exact', 'contains'],  # Define filtering options for sante_patient field
-            'interval_pr': ['exact', 'gte', 'lte'],   # Define filtering options for interval_pr field
-        }
-'''

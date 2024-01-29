@@ -71,6 +71,17 @@ class EcgViewset(ModelViewSet):
         #souvegarde de la serialisation et du resultat du model
         serializer.save(sante_patient = pred)
 
+    
+
+
+
+
+
+
+
+
+
+
     '''def list(self, request, *args, **kwargs):
         queryset = DonneeECG.objects.all().only('interval_pr','frequence_cardiaque', 'sante_patient')
         serializer = DonneeECGLess(queryset, many=True)
