@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('testsms.urls')),
     path('',  include('authentication.urls')),
     path('' , include('userjwt.urls')),
-    path('api-auth/', include('rest_framework.urls'))
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/', include('testapi.urls')),
 ]
